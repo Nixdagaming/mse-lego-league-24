@@ -7,10 +7,6 @@ Repository for the 2024 School LEGO League competition, where students from MS E
 * Type: EV3 Lego Mindstorms Robot
 * Programming language: Python (PyBricks Micropython)
 
-**Team Members:**
-* Alexander R.
-* ...
-
 **Repository Contents:**
 - Code for the robot's program
 - Documentation on the design and building process
