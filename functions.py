@@ -39,6 +39,7 @@ class Robot:
     def __init__(self):
         self.drive_base = drive_base
         self.ultrasonic = ultrasonic
+        self.color = color
     
     # Function to drive the robot to a specific position
     def drive_to(self, target_x, target_y):
@@ -60,6 +61,22 @@ class Robot:
         # Drive straight to the target position
         distance = math.sqrt(delta_x**2 + delta_y**2)
         self.drive_base.straight(distance)
+    
+    # Function to follow a line
+    def one_sensor_follow_line(self):
+        while True:
+            # Calculate the error
+            error = (self.color.reflection() - 50) * 2
+            
+            # Calculate the speed adjustment based on the error magnitude
+            base_speed = max(50, 150 - abs(error) * 2)  # Reduce speed more for larger errors
+            turn_rate = error * 3  # Turning proportional to the error
+            
+            # Drive the robot
+            self.drive_base.drive(base_speed, turn_rate)
+            
+            # Debugging information
+            print(f"Error: {error}, Base Speed: {base_speed}, Turn Rate: {turn_rate}")
 
     def face(self, angle: int):
         """
